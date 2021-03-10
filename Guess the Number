@@ -1,0 +1,84 @@
+#Guess the Number 
+import simplegui 
+import random 
+
+secret_number = 0
+
+count = 0
+
+factor = 0
+
+def input_guess(guess): 
+    print "Your guess was", int(guess)
+    #print guess + 5
+    #new_game() need to stop calling the new_game function so that 
+    #the secret number does not reset
+    #global secret_number
+    global count 
+    count -= 1
+    if (int(guess) > secret_number) and count > 0: 
+        #print secret_number
+        print "You gotta go lower"
+        print "You have", count, "guesses remaining"
+        print ""
+    elif (int(guess) < secret_number) and count > 0: 
+        print "You gotta go higher" 
+        print "You have", count, "guesses remaining"
+        print ""
+    elif (int(guess) == secret_number) and count >= 0:
+        print "Congratulations! That's correct!"
+        print "You have", count, "guesses remaining" 
+        print ""
+    elif (factor == 100 and count == 0): 
+        print "The secret number was", secret_number
+        print "Better luck next time" 
+        print ""
+        new_game()
+    elif (factor == 1000 and count == 0):
+        print "The secret number was", secret_number
+        print "Good try!" 
+        print ""
+        range_zero_thousand()
+    else: 
+        print "There was an error" 
+        print "" 
+  
+
+def new_game(): 
+    global factor 
+    factor = 100 
+    global secret_number 
+    secret_number = random.randrange(0, 100) 
+    #print secret_number 
+    print "Let's play guess the number [0, 100)"
+    global count 
+    count = 7 
+    print "You have", count, "guesses remaining" 
+    print ""
+    #making sure that the secret number is not 
+    #changed everytime a new input is received 
+
+def range_zero_hundred(): 
+    new_game()
+
+def range_zero_thousand():
+    global factor 
+    factor = 1000
+    global secret_number 
+    secret_number = random.randrange(0, 1000) 
+    #print secret_number
+    print "Let's play guess the number [0, 1000)"
+    global count 
+    count = 10 
+    print "You have", count, "guesses remaining"
+    print ""
+
+new_game() #initializes the secret program only occurs when the program is initially run 
+
+
+frame = simplegui.create_frame("Guess the number", 200, 200) 
+frame.add_button("Start a new game from [0, 100)", range_zero_hundred, 100)
+frame.add_button("Start a new game from [0, 1000)", range_zero_thousand, 100)
+frame.add_input("Enter a guess", input_guess, 100)
+
+frame.start()
