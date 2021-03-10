@@ -1,0 +1,32 @@
+#Mystical Octosphere Reloaded 
+
+import simplegui 
+import random 
+
+def input_handler(text): 
+    print "Your question was...", text
+    print "The mystical octosphere is thinking..."
+    print "The mystical octosphere will decide your fate..." 
+    print "The mystical octosphere says...", response() 
+    print ""
+
+def response():
+    mystical_response = random.randrange(0, 5) 
+    if mystical_response == 0: 
+        return("Absolutely")
+    elif mystical_response == 1:
+        return("Possibly")
+    elif mystical_response == 2:
+        return("Probably Not")
+    elif mystical_response == 3:
+        return("Nope") 
+    elif mystical_response == 4:
+        return("There is no way.") 	
+    else: 
+        return("There's a problem") 
+      
+
+frame = simplegui.create_frame("Mystical Octosphere Reloaded", 200, 200)
+frame.add_input("Enter your question", input_handler, 200) 
+frame.start()
+
