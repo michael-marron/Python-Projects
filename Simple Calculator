@@ -1,0 +1,70 @@
+#Buttons 
+import simplegui
+
+#intiliaze global variables 
+store = 0 
+operand = 0
+
+#define functions that manipulate store and operand 
+
+def output(): 
+    print("Store = ", store) 
+    print("Operand = ", operand) 
+    print("")
+    
+def swap(): 
+    global store, operand 
+    store, operand = operand, store
+    output() #actually prints the swapped values to the console
+
+#output()
+#swap()
+#swap()
+
+def enter(input): 
+    global operand
+    operand = float(input)
+    output()
+
+def enter2(input2): 
+    global store 
+    store = float(input2) 
+    output()
+
+def add(): 
+    global store, operand 
+    store = store + operand
+    output()
+  
+
+def subtract(): 
+    global store, operand
+    store = store - operand 
+    output()
+
+def multiply(): 
+    global store, operand 
+    store = store * operand 
+    output()
+
+def divide(): 
+    global store, operand 
+    store = store / operand
+    output()
+
+
+frame = simplegui.create_frame("Simple calculator", 200, 400)
+button1 = frame.add_button("Print", output, 100) 
+button2 = frame.add_button("Swap", swap, 100) 
+button3 = frame.add_button("Add", add, 100)
+button4 = frame.add_button("Subtract", subtract, 100)
+button5 = frame.add_button("Multiply", multiply, 100)
+button6 = frame.add_button("Divide", divide, 100)
+
+text_box = frame.add_input("Enter operand:", enter, 100) 
+text_box_2 = frame.add_input("Enter store:", enter2, 100)
+                           
+frame.start()
+
+#button4 = frame.add_button("Substract", substract)
+                        
